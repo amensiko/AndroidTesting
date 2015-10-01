@@ -7,7 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
+
+import com.insrcd.androidtesting.math.MathParser;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String CALC_TEXT_KEY = "androidtesting.calctext";
 
     private TextView mCalcText;
-    private Button mPlusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +25,51 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
         mCalcText = (TextView) findViewById(R.id.txt_calc);
 
-        mPlusButton = (Button) findViewById(R.id.btn_plus);
+        initNumButtons();
 
-        mPlusButton.setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.btn_eq)).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                MathParser parser = new MathParser(mCalcText.getText().toString());
 
+                mCalcText.setText(String.valueOf(parser.parse()));
             }
         });
+    }
+
+    private void initNumButtons(){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button btn = (Button) v;
+
+                appendToCalculatorText(btn.getText().toString() + " ");
+            }
+        };
+
+        ((Button) findViewById(R.id.num0)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num1)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num2)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num3)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num4)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num5)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num6)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num7)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num8)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num9)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.num0)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.btn_plus)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.btn_div)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.btn_minus)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.btn_mult)).setOnClickListener(listener);
+
+    }
+
+    public void appendToCalculatorText(String text){
+       mCalcText.setText( mCalcText.getText() + text );
     }
 
     @Override
