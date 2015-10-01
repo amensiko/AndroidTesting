@@ -20,7 +20,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2 {
 
 
 
-    public void testMainActivity(){
+    public void testPlusButton(){
         mActivity.onCreate(Bundle.EMPTY, null);
 
         Button plusButton = (Button) mActivity.findViewById(R.id.btn_plus); // grab the + button
