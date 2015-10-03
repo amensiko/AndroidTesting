@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 mCalcText.setText(String.valueOf(parser.parse()));
             }
         });
+
+
     }
 
     private void initNumButtons(){
@@ -45,8 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button btn = (Button) v;
+                TextView textField = (TextView) findViewById(R.id.txt_calc);
 
-                appendToCalculatorText(btn.getText().toString() + " ");
+                if (btn.getText().equals("Clear")) {
+                    textField.setText("");
+                }
+                else {
+                    appendToCalculatorText(btn.getText().toString() + " ");
+                }
             }
         };
 
@@ -65,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.btn_div)).setOnClickListener(listener);
         ((Button) findViewById(R.id.btn_minus)).setOnClickListener(listener);
         ((Button) findViewById(R.id.btn_mult)).setOnClickListener(listener);
+        ((Button) findViewById(R.id.btn_clear)).setOnClickListener(listener);
 
     }
 

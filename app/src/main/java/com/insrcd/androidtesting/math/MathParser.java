@@ -85,7 +85,7 @@ public class MathParser {
                     sb.append((char)c);
                     eatChar();
                 }
-                if (sb.length() == 0) throw new RuntimeException("Unexpected: " + (char)c);
+                if (sb.length() == 0) throw new Error("Now this is an error");
                 v = Double.parseDouble(sb.toString());
             }
             eatSpace();

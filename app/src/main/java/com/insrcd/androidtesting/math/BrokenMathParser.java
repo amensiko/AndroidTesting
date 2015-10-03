@@ -21,7 +21,7 @@ public class BrokenMathParser {
             while (Character.isWhitespace(c)) eatChar();
         }
 
-        double parse() {
+        public double parse() {
             eatChar();
             double v = parseExpression();
             if (c != -1) throw new RuntimeException("Unexpected: " + (char)c);
